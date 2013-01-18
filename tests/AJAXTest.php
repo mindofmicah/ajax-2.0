@@ -27,10 +27,7 @@ class AJAXTest extends PHPUnit_Framework_TestCase
 
 	public function testValidFunctionWithComments()
 	{
-		try {
-			AJAX::process('validFunction', array());
-		} catch (Exception $e) {
-			$this->fail('No exception should have been thrown');
-		}
+		$params = AJAX::process('validFunction', array());
+		$this->assertTrue(is_array($params));
 	}
 }

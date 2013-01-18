@@ -16,5 +16,8 @@ class AJAX
 		if (count($matches) == 0) {
 			throw new Exception('No Documentation available');
 		}
+
+		$ret = array();
+		return $ret;
 	}
 }
