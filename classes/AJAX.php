@@ -22,21 +22,19 @@ class AJAX
         
         // Loop through each line of comments
         foreach ($matches as $match) {
-            if (!empty($match[2])) {
-                if(empty($params[$match[1]])) {
-                    // hack to handle empty strings
-                    if ($match[2] == '\'\'' || $match[2] == '""') {
-                        $ret[$match[1]] = '';
-                    } else {
-                        // Set the parameter to the default value
-                        $ret[$match[1]] = $match[2];
-                    }
-                } else {
-                    // No default value has been passed
-                    $ret[$match[1]] = $params[$match[1]];
+            // Check if the parameter is already in the param array
+            if (!empty($params[$match[1]])) {
+                $ret[$match[1]] = $params[$match[1]];
+            } elseif (!empty($match[2])) {
+                // hack to handle empty strings
+                if ($match[2] == '\'\'' || $match[2] == '""') {
+                    $match[2] = '';
                 }
+                // Set the parameter to the default value
+                $ret[$match[1]] = $match[2];
             } else {
                 // There is no default set
+                throw new Exception();
             }
         }
         return $ret;
