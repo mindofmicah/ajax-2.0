@@ -39,14 +39,19 @@ class AJAXTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($params['value'], 'Apples');
     }
     
-    public function testBasicRequiredValues()
+    public function testBasicRequiredValuesNotMet()
     {
-        
+        try {
+            $params = AJAX::process('validFunction', array());
+        } catch (Exception $exc) {
+            return false;
+        }
+        $this->fail('This should not have passed. It did not have required');
     }
-    
-    public function testValidFunctionWithComments()
+    public function testBasicRequiredValuesMet()
     {
-        $params = AJAX::process('validFunction', array());
+        $params = AJAX::process('validFunction', array('key'=>'value'));
         $this->assertTrue(is_array($params));
+        $this->assertArrayHasKey('key', ($params));
     }
 }
