@@ -26,11 +26,11 @@ function validFunction()
  *** greaterThan7 [>7]
  */
 function testingGreaterThan(){}
- /*
-  *** greaterThanEqual7 [>=7]
-  */
+/**
+ *** greaterThanEqual7 [>=7]
+ */
 function testingGreaterThanEquals(){}
-/*
+/**
  *** lessThan5 [<5]
  */
 function testingLessThan(){}
