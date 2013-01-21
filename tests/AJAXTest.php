@@ -48,6 +48,38 @@ class AJAXTest extends PHPUnit_Framework_TestCase
         }
         $this->fail('This should not have passed. It did not have required');
     }
+
+	public function testGreaterThan()
+	{
+		// Valid
+		$params = AJAX::process('testingGreaterThan', array('greaterThan7' => 8));
+		$this->assertEquals(8, $params['greaterThan7']);
+
+		// Not valid		
+		try {
+			$params = AJAX::process('testingGreaterThan', array('greaterThan7' => 5));
+		} catch (Exception $e) {
+			return false;
+		}
+		$this->fail('5 is less than 7; this should have failed.');
+
+
+	}
+
+	public function testGreaterThanEquals()
+	{
+
+	}
+
+	public function testLessThan()
+	{
+
+	}
+
+	public function testLessThanEquals()
+	{
+
+	}
     public function testBasicRequiredValuesMet()
     {
         $params = AJAX::process('validFunction', array('key'=>'value'));
