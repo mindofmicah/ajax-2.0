@@ -88,7 +88,7 @@ class AJAXTest extends PHPUnit_Framework_TestCase
 	{
 		// Valid
 		$params = AJAX::process('testingLessThan', array('lessThan5' => 4));
-		$this->assertEquals(8, $params['lessThan5']);
+		$this->assertEquals(4, $params['lessThan5']);
 
 		// Not valid		
 		try {
