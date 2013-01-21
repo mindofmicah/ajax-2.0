@@ -34,7 +34,7 @@ class AJAX
                 $ret[$match[1]] = $match[2];
             } else {
                 // There is no default set
-                throw new Exception();
+                throw new Exception('There is no value for $params[' . $match[1] . ']');
             }
         }
         return $ret;
