@@ -15,7 +15,7 @@ class AJAX
         $matches = array();
         preg_match_all('%\s*(\w+)(?::([\w\'"]+))?%', $comments, $matches, 2);
         if (count($matches) == 0) {
-            throw new Exception('No Documentation available');
+            throw new Exception('No Documentation available for ' . $funcName);
         }
 
         $ret = array();
