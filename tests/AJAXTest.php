@@ -68,16 +68,55 @@ class AJAXTest extends PHPUnit_Framework_TestCase
 
 	public function testGreaterThanEquals()
 	{
+		// Valid
+		$params = AJAX::process('testingGreaterThanEquals', array('greaterThanEqual7' => 7));
+		$this->assertEquals(7, $params['greaterThanEqual7']);
+
+		// Not valid		
+		try {
+			$params = AJAX::process('testingGreaterThanEquals', array('greaterThanEqual7' => 5));
+		} catch (Exception $e) {
+			return false;
+		}
+		$this->fail('5 is less than 7; this should have failed.');
+
+
 
 	}
 
 	public function testLessThan()
 	{
+		// Valid
+		$params = AJAX::process('testingLessThan', array('lessThan5' => 4));
+		$this->assertEquals(8, $params['lessThan5']);
+
+		// Not valid		
+		try {
+			$params = AJAX::process('testingLessThan', array('lessThan5' => 8));
+		} catch (Exception $e) {
+			return false;
+		}
+		$this->fail('5 is less than 8; this should have failed.');
+
+
 
 	}
 
 	public function testLessThanEquals()
 	{
+		// Valid
+		$params = AJAX::process('testingLessThanEquals', array('lessThanEqual5' => 5));
+		$this->assertEquals(5, $params['lessThanEqual5']);
+
+		// Not valid		
+		try {
+			$params = AJAX::process('testingLessThanEqual', array('lessThanEqual5' => 6));
+		} catch (Exception $e) {
+			return false;
+		}
+		$this->fail('5 is less than 6; this should have failed.');
+
+
 
 	}
     public function testBasicRequiredValuesMet()
