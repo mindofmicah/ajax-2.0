@@ -30,34 +30,31 @@ class AJAX
 				if (empty($match[3])) {
 					$ret[$match[1]] = $params[$match[1]];					
 				} else {
-				foreach (explode(',', $match[3]) as $validator) {
-					if (preg_match('%(<|>)(=)?\s*(.+)%', $validator, $m)) {
-						if (($m[2] == '=') && ($m[3] == $params[$match[1]])) {
-							$ret[$match[1]] = $m[3];
-						} elseif ($m[1] == '>') {
-							if ($params[$match[1]] > $m[3]) {
-								$ret[$match[1]] = $params[$match[1]];
-							} else {
-								throw new Exception($params[$match[1]] . ' is not GREATER THAN ' . $m[3]);
+					foreach (explode(',', $match[3]) as $validator) {
+						if (preg_match('%(<|>)(=)?\s*(.+)%', $validator, $m)) {
+							if (($m[2] == '=') && ($m[3] == $params[$match[1]])) {
+								$ret[$match[1]] = $m[3];
+							} elseif ($m[1] == '>') {
+								if ($params[$match[1]] > $m[3]) {
+									$ret[$match[1]] = $params[$match[1]];
+								} else {
+									throw new Exception($params[$match[1]] . ' is not GREATER THAN ' . $m[3]);
+								}
+							} elseif($m[1] == '<') {
+	
+								if($params[$match[1]] < $m[3]) {
+									$ret[$match[1]] = $params[$match[1]];
+								} else {
+									throw new Exception($params[$match[1]] . ' is not LESS THAN ' . $m[3]);
+								}
 							}
-						} elseif($m[1] == '<') {
-
-							if($params[$match[1]] < $m[3]) {
-								$ret[$match[1]] = $params[$match[1]];
-							} else {
-								throw new Exception($params[$match[1]] . ' is not LESS THAN ' . $m[3]);
-							}
+						
+						} else {
+							// Not a greater than
+							echo 'not a greater than';
 						}
-					
-					}
-					 else {
-						// Not a greater than
-						echo 'not a greater than';
-					}
-
 					}
 				}
-
 
                 $ret[$match[1]] = $params[$match[1]];
             } elseif (!empty($match[2])) {
