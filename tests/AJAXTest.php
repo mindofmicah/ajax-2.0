@@ -115,10 +115,15 @@ class AJAXTest extends PHPUnit_Framework_TestCase
 			return false;
 		}
 		$this->fail('5 is less than 6; this should have failed.');
-
-
-
 	}
+
+	public function testParamIsInt(){}
+	public function testParamIsFloat(){}
+	public function testParamIsEmail(){}
+	public function testParamIsRegex(){}
+	public function testParamIsIP(){}
+	public function testParamIsUrl(){} 
+
     public function testBasicRequiredValuesMet()
     {
         $params = AJAX::process('validFunction', array('key'=>'value'));
