@@ -51,7 +51,13 @@ class AJAX
 						
 						} else {
 							// Not a greater than
-							echo 'not a greater than';
+							if ($validator == 'int') {
+								if (filter_var($params[$match[1]], FILTER_VALIDATE_INT)) {
+									$ret[$match[1]] = $params[$match[1]];
+								} else {
+									throw new Exception($params[$match[1]] . ' is not an int');
+								}
+							}
 						}
 					}
 				}
