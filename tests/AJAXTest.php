@@ -117,7 +117,20 @@ class AJAXTest extends PHPUnit_Framework_TestCase
 		$this->fail('5 is less than 6; this should have failed.');
 	}
 
-	public function testParamIsInt(){}
+	public function testParamIsInt()
+	{
+		$params = AJAX::process('testingIsAnInt', array('int'=>5));
+		$this->assertEquals(5, $params['int']);
+
+		try {
+			$params = AJAX::process('testingIsAnInt', array('int'=>'asdf'));
+		} catch (Exception $e) {
+			return false;
+		}
+	
+		$this->fail('asdf is NOT an int');
+	
+	}
 	public function testParamIsFloat(){}
 	public function testParamIsEmail(){}
 	public function testParamIsRegex(){}
