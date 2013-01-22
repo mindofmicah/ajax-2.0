@@ -38,3 +38,8 @@ function testingLessThan(){}
  *** lessThanEqual5 [<=5]
  */
 function testingLessThanEquals(){}
+
+/**
+ *** int [int]
+ */
+function testingIsAnInt(){}
